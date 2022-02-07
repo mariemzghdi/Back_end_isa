@@ -1,6 +1,6 @@
-const Tutorial = require('../models/tutorial.model.js');
+const Pack_operation = require('../models/tutorial.model.js');
 
-// Create and Save a new Tutorial
+// Create and Save a new pack_operation
 exports.create = (req, res) => {
   // Validate request
   if (!req.body) {
@@ -10,14 +10,19 @@ exports.create = (req, res) => {
   }
 
   // Create a Tutorial
-  const tutorial = new Tutorial({
-    title: req.body.title,
-    description: req.body.description,
-    published: req.body.published || false,
+  const pack_operation = new Pack_operation({
+    Pack_id: req.body.Pack_id,
+    Code_operation: req.body.Code_operation,
+    Operation_name: req.body.Operation_name ,
+    Estim_Time: req.body.Estim_Time,
+    T_start: req.body.T_start,
+    T_end: req.body.T_end,
+    Rend: req.body.Rend,
+
   });
 
-  // Save Tutorial in the database
-  Tutorial.create(tutorial, (err, data) => {
+  // Save Pack_operation in the database
+  Pack_operation.create(pack_operation, (err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -31,7 +36,7 @@ exports.create = (req, res) => {
 exports.findAll = (req, res) => {
   const title = req.query.title;
 
-  Tutorial.getAll(title, (err, data) => {
+  Pack_operation.getAll(title, (err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -43,7 +48,7 @@ exports.findAll = (req, res) => {
 
 // Find a single Tutorial with a id
 exports.findOne = (req, res) => {
-  Tutorial.findById(req.params.id, (err, data) => {
+  Pack_operation.findById(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
@@ -59,8 +64,8 @@ exports.findOne = (req, res) => {
 };
 
 // find all published Tutorials
-exports.findAllPublished = (req, res) => {
-  Tutorial.getAllPublished((err, data) => {
+exports.findRend = (req, res) => {
+  Pack_operation.getRend((err, data) => {
     if (err)
       res.status(500).send({
         message:
@@ -81,9 +86,9 @@ exports.update = (req, res) => {
 
   console.log(req.body);
 
-  Tutorial.updateById(
+  Pack_operation.updateById(
     req.params.id,
-    new Tutorial(req.body),
+    new pack_operation(req.body),
     (err, data) => {
       if (err) {
         if (err.kind === "not_found") {
@@ -102,7 +107,7 @@ exports.update = (req, res) => {
 
 // Delete a Tutorial with the specified id in the request
 exports.delete = (req, res) => {
-  Tutorial.remove(req.params.id, (err, data) => {
+  pack_operation.remove(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
@@ -119,7 +124,7 @@ exports.delete = (req, res) => {
 
 // Delete all Tutorials from the database.
 exports.deleteAll = (req, res) => {
-  Tutorial.removeAll((err, data) => {
+  Pack_operation.removeAll((err, data) => {
     if (err)
       res.status(500).send({
         message:

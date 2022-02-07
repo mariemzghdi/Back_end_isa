@@ -1,27 +1,36 @@
 const sql = require("./db.js");
 
 // constructor
-const Tutorial = function(tutorial) {
-  this.title = tutorial.title;
-  this.description = tutorial.description;
-  this.published = tutorial.published;
+const Pack_operation = function(pack_operationl) {
+  this.Pack_id = pack_operation.Pack_id;
+  this.Code_operation =pack_operation.Code_operation;
+  this.Operation_name = pack_operation.Operation_name;
+  this.Estim_Time = pack_operation.Estim_Time;
+  this.Firstname = pack_operation.Firstname;
+  this.Lastname = pack_operation.Lastname;
+  
+  this.Machine_id = pack_operation.Machine_id;
+  this.DigiTex = pack_operation.DigiTex;
+  this.T_start = pack_operation.T_start;
+  this.T_end = pack_operation.T_end;
+  this.Rend = pack_operation.Rend;
 };
 
-Tutorial.create = (newTutorial, result) => {
-  sql.query("INSERT INTO tutorials SET ?", newTutorial, (err, res) => {
+Pack_operation.create = (newPack_operation, result) => {
+  sql.query("INSERT INTO pack_operation SET ?", newPack_operation, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
       return;
     }
 
-    console.log("created tutorial: ", { id: res.insertId, ...newTutorial });
-    result(null, { id: res.insertId, ...newTutorial });
+    console.log("created pack_operation: ", { id: res.insertId, ...newPack_operation });
+    result(null, { id: res.insertId, ...newpack_operation });
   });
 };
 
-Tutorial.findById = (id, result) => {
-  sql.query(`SELECT * FROM tutorials WHERE id = ${id}`, (err, res) => {
+Pack_operation.findById = (id, result) => {
+  sql.query(`SELECT * FROM pack_operation WHERE id = ${id}`, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(err, null);
@@ -29,7 +38,7 @@ Tutorial.findById = (id, result) => {
     }
 
     if (res.length) {
-      console.log("found tutorial: ", res[0]);
+      console.log("found pack_operation: ", res[0]);
       result(null, res[0]);
       return;
     }
@@ -39,11 +48,11 @@ Tutorial.findById = (id, result) => {
   });
 };
 
-Tutorial.getAll = (title, result) => {
-  let query = "SELECT * FROM tutorials";
+Pack_operation.getAll = (Lastname, result) => {
+  let query = "SELECT * FROM pack_operation";
 
-  if (title) {
-    query += ` WHERE title LIKE '%${title}%'`;
+  if (Lastname) {
+    query += ` WHERE title LIKE '%${Lastname}%'`;
   }
 
   sql.query(query, (err, res) => {
@@ -53,28 +62,31 @@ Tutorial.getAll = (title, result) => {
       return;
     }
 
-    console.log("tutorials: ", res);
+    console.log("pack_operation: ", res);
     result(null, res);
   });
 };
 
-Tutorial.getAllPublished = result => {
-  sql.query("SELECT * FROM tutorials WHERE published=true", (err, res) => {
+Pack_operation.getRend = result => {
+  sql.query("SELECT Firstname,Rend FROM pack_operation ", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
       return;
     }
 
-    console.log("tutorials: ", res);
+    console.log(" Pack_operation: ", res);
     result(null, res);
   });
 };
 
-Tutorial.updateById = (id, tutorial, result) => {
+Pack_operation.updateById = (id, pack_operation, result) => {
   sql.query(
-    "UPDATE tutorials SET title = ?, description = ?, published = ? WHERE id = ?",
-    [tutorial.title, tutorial.description, tutorial.published, id],
+    "UPDATE  pack_operation SET Firstname = ?, Lastname = ?, Rend = ? WHERE id = ?",
+    [pack_operation.Code_operation,pack_operation.Code_operation
+       ,pack_operation.Estim_Time, pack_operation.Firstname,
+       pack_operation.Lastname,pack_operation.Machine_id,pack_operation.DigiTex,
+       pack_operation.T_start,pack_operation.T_end,pack_operation.Rend,id],
     (err, res) => {
       if (err) {
         console.log("error: ", err);
@@ -88,13 +100,13 @@ Tutorial.updateById = (id, tutorial, result) => {
         return;
       }
 
-      console.log("updated tutorial: ", { id: id, ...tutorial });
+      console.log("updated  pack_operation : ", { id: id, ...tutorial });
       result(null, { id: id, ...tutorial });
     }
   );
 };
 
-Tutorial.remove = (id, result) => {
+Pack_operation.remove = (id, result) => {
   sql.query("DELETE FROM tutorials WHERE id = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
@@ -113,17 +125,17 @@ Tutorial.remove = (id, result) => {
   });
 };
 
-Tutorial.removeAll = result => {
-  sql.query("DELETE FROM tutorials", (err, res) => {
+Pack_operation.removeAll = result => {
+  sql.query("DELETE FROM pack_operations", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
       return;
     }
 
-    console.log(`deleted ${res.affectedRows} tutorials`);
+    console.log(`deleted ${res.affectedRows} pack_operation`);
     result(null, res);
   });
 };
 
-module.exports = Tutorial;
+module.exports =  Pack_operation;
