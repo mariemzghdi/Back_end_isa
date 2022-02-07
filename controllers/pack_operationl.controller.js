@@ -1,4 +1,4 @@
-const Pack_operation = require('../models/tutorial.model.js');
+const Pack_operation = require('../models/pack_operationl.model.js');
 
 // Create and Save a new pack_operation
 exports.create = (req, res) => {
@@ -9,7 +9,7 @@ exports.create = (req, res) => {
     });
   }
 
-  // Create a Tutorial
+  // Create a Pack_operation
   const pack_operation = new Pack_operation({
     Pack_id: req.body.Pack_id,
     Code_operation: req.body.Code_operation,
@@ -107,7 +107,7 @@ exports.update = (req, res) => {
 
 // Delete a Tutorial with the specified id in the request
 exports.delete = (req, res) => {
-  pack_operation.remove(req.params.id, (err, data) => {
+  Pack_operation.remove(req.params.id, (err, data) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({

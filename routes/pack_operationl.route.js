@@ -1,16 +1,16 @@
 module.exports = app => {
-  const  pack_operation = require("../controllers/tutorial.controller.js");
+  const  controle_packet = require("../controllers/pack_operationl.controller.js");
 
   var router = require("express").Router();
 
   // Create a new Tutorial
-  router.post("/", pack_operation.create);
+  router.post("/", controle_packet.create);
 
   // Retrieve all Tutorials
-  router.get("/", pack_operation.findAll);
+  router.get("/", controle_packet.findAll);
 
   // Retrieve all published Tutorials
-  router.get("/published", pack_operation.findRend);
+  router.get("/published", controle_packet.findRend);
 
   // Retrieve a single Tutorial with id
   router.get("/:id",pack_operation.findOne);
