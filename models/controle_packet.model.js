@@ -73,7 +73,7 @@ Controle_packet.getAll = (Lastname, result) => {
 };
 
 Controle_packet.getQteT = result => {
-  sql.query("SELECT QteT FROM controle_packet  WHERE QteT <> ''", (err, res) => {
+  sql.query("SELECT QteT FROM controle_packet  WHERE (QteT <> '')AND (QteT<100)", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);

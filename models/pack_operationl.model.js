@@ -68,7 +68,7 @@ Pack_operation.getAll = (Lastname, result) => {
 };
 
 Pack_operation.getRend = result => {
-  sql.query("SELECT Firstname,Rend FROM pack_operation   WHERE (Rend <>  '') AND(Rend < 100 ) ", (err, res) => {
+  sql.query("SELECT Firstname,Rend FROM pack_operation   WHERE (Rend <>  '') AND(Rend < 100 )AND (Rend > 7 ) ", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
