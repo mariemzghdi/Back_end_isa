@@ -10,7 +10,7 @@ module.exports = app => {
     router.get("/", controle_packet.findAll);
   
     // Retrieve all published Tutorials
-    router.get("/published",controle_packet.findQte);
+    router.get("/qte",controle_packet.findQte);
   
     // Retrieve a single Tutorial with id
     router.get("/:id",controle_packet.findOne);
@@ -24,5 +24,5 @@ module.exports = app => {
     // Delete all Tutorials
     router.delete("/",  controle_packet.deleteAll);
   
-    app.use('/api/tutorials', router);
+    app.use('/api/controle_packet', router);
   };

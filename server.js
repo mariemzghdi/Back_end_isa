@@ -20,7 +20,8 @@ app.get("/", (req, res) => {
   res.json({ message: "Welcome to Dashboard application." });
 });
 
-require("./routes/tutorial.route")(app);
+require("./routes/pack_operation.route")(app);
+require("./routes/controle_packet.route")(app);
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;

@@ -1,16 +1,18 @@
+const Pack_operation = require("../models/pack_operationl.model.js");
+
 module.exports = app => {
-  const  controle_packet = require("../controllers/pack_operationl.controller.js");
+  const  pack_operation = require("../controllers/pack_operationl.controller.js");
 
   var router = require("express").Router();
 
   // Create a new Tutorial
-  router.post("/", controle_packet.create);
+  router.post("/", pack_operation.create);
 
   // Retrieve all Tutorials
-  router.get("/", controle_packet.findAll);
+  router.get("/", pack_operation.findAll);
 
   // Retrieve all published Tutorials
-  router.get("/published", controle_packet.findRend);
+  router.get("/Rend", pack_operation.findRend);
 
   // Retrieve a single Tutorial with id
   router.get("/:id",pack_operation.findOne);
@@ -24,5 +26,5 @@ module.exports = app => {
   // Delete all Tutorials
   router.delete("/",  pack_operation.deleteAll);
 
-  app.use('/api/tutorials', router);
+  app.use('/api/pack_operation', router);
 };
