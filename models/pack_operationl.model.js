@@ -68,7 +68,7 @@ Pack_operation.getAll = (Lastname, result) => {
 };
 
 Pack_operation.getRend = result => {
-  sql.query("SELECT Firstname,Rend FROM pack_operation ", (err, res) => {
+  sql.query("SELECT Firstname,Rend FROM pack_operation   WHERE (Rend <>  '') AND(Rend < 100 ) ", (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
@@ -107,7 +107,7 @@ Pack_operation.updateById = (id, pack_operation, result) => {
 };
 
 Pack_operation.remove = (id, result) => {
-  sql.query("DELETE FROM tutorials WHERE id = ?", id, (err, res) => {
+  sql.query("DELETE FROM pack_operation WHERE id = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);

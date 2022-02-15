@@ -52,18 +52,18 @@ exports.findOne = (req, res) => {
     if (err) {
       if (err.kind === "not_found") {
         res.status(404).send({
-          message: `Not found Tutorial with id ${req.params.id}.`
+          message: `Not found with id ${req.params.id}.`
         });
       } else {
         res.status(500).send({
-          message: "Error retrieving Tutorial with id " + req.params.id
+          message: "Error retrieving with id " + req.params.id
         });
       }
     } else res.send(data);
   });
 };
 
-// find all published Tutorials
+// find all Rend andFirstname
 exports.findRend = (req, res) => {
   Pack_operation.getRend((err, data) => {
     if (err)
